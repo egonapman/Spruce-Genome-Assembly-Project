@@ -3,6 +3,7 @@ package labbProjDNA;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -70,32 +71,42 @@ public class DNAlinksTest {
 	
 	
 	
-//	@Test
-//	public void testKalle() throws Exception {
-//		
-//		
-//		DNAlinks links=new DNAlinks();
-//		
-//		File file = new File("C:\\temp\\scripts\\UniqueEdges.txt");
-//		
-//		Scanner sc = new Scanner(file);
-//		
-//		while(sc.hasNextLine()) {
-//			
-//			String line = sc.nextLine();
-//			
-//			String[] data = line.split(" "); 
-//			
-//			links.add(data[0], data[1]);
-//			
-//		}
-//		
-//		sc.close();
-//
-//		links.show();	
-//		
-//		links.showDegrees();
-//		
-//	}
+	@Test
+	public void testOnBigDataSet() throws Exception {
+		
+		
+		DNAlinks links=new DNAlinks();
+		
+		File file = new File("C:\\temp\\scripts\\UniqueEdges.txt");
+		
+		Scanner sc = new Scanner(file);
+		int i = 0;
+		//links.add("contig_1004738", "contig_1006287");
+		while(sc.hasNextLine() && i < 1700000) {
+
+			if (i%100000==0) {
+				System.out.println(i);
+			}
+		
+			String line = sc.nextLine();
+			
+			String[] data = line.split(" "); 
+			
+			links.add(data[0], data[1]);
+			//System.out.println(data[0] + " " + data[1]);
+			i++;
+			
+		}
+		
+		System.out.println("start analysing komp");
+		links.setKomponent();
+		links.show();
+		sc.close();
+
+		
+	}
+	
+	
+	
 	
 }

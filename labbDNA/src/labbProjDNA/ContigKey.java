@@ -7,11 +7,11 @@ public class ContigKey {
 	private String idContig; // Ta bor sen
 
 	public ContigKey(String idContig) {
-		Id = getHashCode(idContig);
+		Id = getHashCode2(idContig);
 		this.idContig=idContig; //Ta bort sen
 	}
 
-	private int getHashCode(String str) {
+	private int getHashCode2(String str) {
 		return str.hashCode();
 	}
 
@@ -19,16 +19,11 @@ public class ContigKey {
 		return Id;
 	}
 
-	//Ta bort sen
-	public String getIdContig() {
-		return idContig;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Id;
+		result = prime * result + ((idContig == null) ? 0 : idContig.hashCode());
 		return result;
 	}
 
@@ -41,10 +36,21 @@ public class ContigKey {
 		if (getClass() != obj.getClass())
 			return false;
 		ContigKey other = (ContigKey) obj;
-		if (Id != other.Id)
+		if (idContig == null) {
+			if (other.idContig != null)
+				return false;
+		} else if (!idContig.equals(other.idContig))
 			return false;
 		return true;
 	}
+
+
+	//Ta bort sen
+//	public String getIdContig() {
+//		return idContig;
+//	}
+
+
 
 
 }

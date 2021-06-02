@@ -1,7 +1,5 @@
 package labbProjDNA;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +9,9 @@ public class DNAlinks {
 	
 	//maps a key (hashcoded identifier) to it's neighbours and a component attribute
 	private Map<ContigKey,  NeighbourContigsAndComponent> dnalinks;
-	//Maps a componentNumber to its size
+	//Maps a componentNumber to the size of the component
 	private Map<Integer,  Integer > komponentStatistik;
+	private Integer Maxlevel;
 
 
 	public DNAlinks() {
@@ -28,7 +27,6 @@ public class DNAlinks {
 		//contig key runs the idenfiers through a hashfunction 
 		ContigKey key1= new ContigKey(iden1);
 		ContigKey key2= new ContigKey(iden2);
-		int i = 1;
 		
 		//if first key1 does not already exist we add it to hashmap and add key2 as its neighbor
 		//else just add key2 as neighbor
@@ -48,6 +46,10 @@ public class DNAlinks {
 		}
 	}
 	
+	
+	//Traverses the graph by iterating each iteration we check if node has already been visited if not
+	//we give the node and start iterating it's neighbours, for each nighbour
+	//we use recuersion to visit it neigbour until we have explored an entire component 
 	public void setKomponent() {
 		Integer komponentNumber=0;
 		for (Entry<ContigKey, NeighbourContigsAndComponent> ent: dnalinks.entrySet()) {
@@ -65,7 +67,10 @@ public class DNAlinks {
 	}
 	
 	
+	//updates a given nodes component if 
 	private void uppdateraKomponetStatistik(Integer komponentNumber) {
+		
+		
 		if(komponentStatistik.containsKey(komponentNumber)) {
 			int currVal=komponentStatistik.get(komponentNumber);
 			komponentStatistik.put(komponentNumber, currVal+1);
@@ -74,12 +79,18 @@ public class DNAlinks {
 		}
 
 	}
+	
+
+	
+
 
 	private void tilldelaKomponentRekursiv(Integer komponentNumber, NeighbourContigsAndComponent currNeAndComp) {
+	
 		if (!currNeAndComp.komponentAlreadyDefined()) {
 			uppdateraKomponetStatistik(komponentNumber);
 			currNeAndComp.setKomponent(komponentNumber);
 		}
+		
 		for (ContigKey k : currNeAndComp.getNeigbours()) {
 			NeighbourContigsAndComponent myNeigbour = dnalinks.get(k);
 			if (myNeigbour.komponentAlreadyDefined()) {
@@ -100,26 +111,28 @@ public class DNAlinks {
 	//shows keys and values in dnalinks
 	public void show() {
 		
-		for (Entry<ContigKey, NeighbourContigsAndComponent> ent: dnalinks.entrySet()) {
-			
-			ContigKey key = ent.getKey();
-			
-			NeighbourContigsAndComponent neigbours = ent.getValue();
-			List<ContigKey> keysForFriends = neigbours.getNeigbours();
-			
-			System.out.print(key.getIdContig()+",key="+neigbours.getKomponent()+", friends= ");
-			
-			for (ContigKey k : keysForFriends) {
-				
-				System.out.print(k.getIdContig()+", ");	
-			}
-			
-			System.out.println();
-	
-		}
-		
+//		for (Entry<ContigKey, NeighbourContigsAndComponent> ent: dnalinks.entrySet()) {
+//			
+//			ContigKey key = ent.getKey();
+//			
+//			NeighbourContigsAndComponent neigbours = ent.getValue();
+//			List<ContigKey> keysForFriends = neigbours.getNeigbours();
+//			
+//			System.out.print(key.getIdContig()+",key="+neigbours.getKomponent()+", friends= ");
+//			
+//			for (ContigKey k : keysForFriends) {
+//				
+//				System.out.print(k.getIdContig()+", ");	
+//			}
+//			
+//			System.out.println();
+//	
+//		}
+//		
 		for (Entry<Integer, Integer> ent: komponentStatistik.entrySet()) {
-				System.out.println(ent.getKey()+", "+ent.getValue());		
+			   if (ent.getValue()>30) {
+				System.out.println(ent.getKey()+", "+ent.getValue());
+			   }
 		}
 
 	}
