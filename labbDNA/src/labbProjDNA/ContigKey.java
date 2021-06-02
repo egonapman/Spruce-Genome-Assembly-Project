@@ -3,12 +3,12 @@ package labbProjDNA;
 public class ContigKey {
 
 	private int Id;
+
 	private String idContig; // Ta bor sen
 
 	public ContigKey(String idContig) {
 		Id = getHashCode(idContig);
 		this.idContig=idContig; //Ta bort sen
-		
 	}
 
 	private int getHashCode(String str) {
@@ -45,5 +45,6 @@ public class ContigKey {
 			return false;
 		return true;
 	}
+
 
 }
