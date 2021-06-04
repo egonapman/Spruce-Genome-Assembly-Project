@@ -94,77 +94,69 @@ All edges are now only reapeted once.
 
 The resulting file containd 39,881,899 lines.
 
---------------ASSIGNMENT-------------------
+--------------ASSIGNMENT 1: Node degree distrubition-------------------
 
-For the assignment we fisrt need to count the derggree of every node.
+For the assignment we fisrt need to count the degree of every node.
 
 The project page hints that idenfiers should be converted to integers to take up less space I think this implemnting a hashmap.
-Hashmaps is also usefull since we can hopfully access induvidual edges of the graph quickly given a identifier.
+Hashmaps is also usefull here since we can access induvidual edges of the graph quickly given a identifier.
 
-I will map every identifiers hashcode with a list of it's connected neighbors, the length of the list will then be the degree of the node is mapped with.
+I have not worked much with hashmaps earlier so I will use java's HashMap.
 
-The algorithms i used for this
+For the first assigment I have to find out have many negibours every node has.
 
-iterates all edges and adds the first identifer to a hashmap and adds the second identifer to it's list of negibours
+An edge (a,b) in E implies both that a is a neigbor to b and that b is a neigbor to a.
 
-then it adds the second identifier to the hashmap with the first identifer to it's list of neighbors.
+I really only have to count the number of occurances of a node to finds it's degree.
 
-If a idenfier is already in the hashmap we add it's other idenfier to it's list of neigbours
+For this i decieded to iterate each node to a list containg it's neighbors with the following algortihm
 
-Example:
+------------------------------
+def mapNodesToNeighbors(G):
+  
+ map<key, list> map = new Hashmap()
+ 
+ for each edge in G:
+    
+   if (!map.containsKey(edge.node1)):
+      map.put(node1, new list)
+      map(node1).add(node2)
+   else:
+      map(node1).add(node2)
 
-node pairs:
+   if (!map.containsKey(edge.node2)):
+      map.put(node2, new list)
+      map(node1).add(node1)
+   else:
+      map(node2).add(node1)
+  
+  
+------------------------------
 
-ctg.ctg01 ctg.ctg02
-ctg.ctg01 ctg.ctg03
-ctg.ctg02 ctg.ctg03
+In the real code I use the Hashcode of the identifier as keys in my hashmap.
 
-map (in the real code the keys are hashcode and not idenfiers strings):
+example:
 
-first iteration
+contig_1695162".hashCode()
 
-ctg.ctg01 : [ctg.ctg02]
+will return: 1865787805.
 
-ctg.ctg02 : [ctg.ctg01]
+Now we get the degrees of every node by iterating entries of the map ang getting the size of every list.
+I could have just used a counter when initating the hashmap instead of a list with every neighbor, but having a list made it easier to examine in test
+and when we need to know every neighbor for later assignments. 
 
-second iteration
+----------------------------------
+def getNodeDegreeDistrubtion(map<key, listOfNeigbors>):
 
-ctg.ctg01 : [ctg.ctg02, ctg.ctg03]
+  for each entry in map():
+   degree = entry.getValue.size();
+   //do something (print/write to file etc)
 
-ctg.ctg02 : [ctg.ctg01]
+---------------------------------
 
-ctg.ctg03 : [ctg.ctg01]
+--------------ASSIGNMENT 2 & 3: Number of components and component size distubition-------------------
 
-third iteration
-
-ctg.ctg01 : [ctg.ctg02 , ctg.ctg03]
-
-ctg.ctg02 : [ctg.ctg01 , ctg.ctg03]
-
-ctg.ctg03 : [ctg.ctg01 , ctg.ctg02]
-
-here every node will have degree two since all node have 2 neigbours.
-
-For the assigmnet we also want to know how many components G contains. For this I made my hashamp map every node to it's neibors and also a component number.
-
-Two nodes are part of the same componet if theres a path between them.
-
-I can set component by iterating every entry in my hashmap
-
-for each entry i first need to check if they already have a assiend component if not we will add it to the first component (1) then i iterate it's neighbors
-and for each neighor we use recursion to get set it and all of it's neigbors.
-
-It's similar to graph traversal with the assumption that all nodes cant be reached from a node, and all visted nodes will share component number with it's neigbors.
-
-I decided to map every component number to the number of nodes with that component number so it will be east to find the size distrubiton and number of components. 
-
-
-
-
-
-
-
-
+For this I need to know all neighbors to each node 
 
 
 
