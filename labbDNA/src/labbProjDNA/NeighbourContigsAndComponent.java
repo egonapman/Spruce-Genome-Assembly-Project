@@ -29,7 +29,7 @@ public class NeighbourContigsAndComponent {
 		this.komponent = komp;
 	}
 
-	public boolean komponentAlreadyDefined() {
+	public boolean komponentAlreadyAssigned() {
 		return komponent != null;
 	}
 

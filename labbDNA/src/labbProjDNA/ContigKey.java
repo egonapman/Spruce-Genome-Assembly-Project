@@ -45,11 +45,6 @@ public class ContigKey {
 	}
 
 
-	//Ta bort sen
-//	public String getIdContig() {
-//		return idContig;
-//	}
-
 
 
 
