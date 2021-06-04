@@ -156,7 +156,53 @@ def getNodeDegreeDistrubtion(map<key, listOfNeigbors>):
 
 --------------ASSIGNMENT 2 & 3: Number of components and component size distubition-------------------
 
-For this I need to know all neighbors to each node 
+Two nodes are in the same componet if there exist a path between them. In our case this means that every node and it's neighbors will be of the same component.
+
+we can simply find all components by looking at every line in our file and try to go as far as possible recursivly from each node and assingning every encounterd node to 
+a component number. Nodes with the same component number will be in the same component. I decided to make a object that stores neghibours and a component number.
+
+The algorithm is as follows
+
+--------------------------------------------
+
+def setComponent(map<key, negboursAndcomponent> neigboursAndComponents):
+  
+  componentNumber = 0
+  
+  for entry in neigboursAndComponents():
+    
+   current = entry.getValue()
+   
+   if(current.component == null):  //componet has not yet been defined if it's set to null.
+      componentNumber++;
+      setComponentRecursivly(componentNumber, current):
+        
+    
+def setComponentRecursivly(componentNumber, current):
+  
+  if(current.component == null):
+    current.setComponentNumber(componentNumber)
+   
+  for each neighbor in current.neighbors:
+    
+   if(neighbor.component == null):
+    setComponentRecursivly(componentNumber, neighbor)
+   
+    
+ --------------------------------------------   
+
+
+The running time is O(V) where V is the number of vertices in the graph, since we just simply iterate all the nodes V in the graph, if the first component contains A nodes
+we will have V - A expensive function calls left.
+
+
+
+
+
+
+
+
+
 
 
 
