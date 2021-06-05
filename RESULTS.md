@@ -6,13 +6,15 @@ To get the result I got, the first step is to remove contained nodes with graph 
 
 The resulting file UniqueEdges.txt only contains the first identfier names since thats all thats needed for this assingment part.
 
-Get the node degree distobution and component size distrobution from the dnaLinks class assuming you have run all the preprocess
+Get the node degree distobution and component size distrobution from the GraphCalculator class assuming you have run all the preprocess.
 
-(I had to change to run configrations when running in eclipse beacuse of how big the dataset is)
+
+
+psudo-code for my main method
 
     def main():
 
-       raphCalculator calculator=new GraphCalculator();
+       GraphCalculator calculator=new GraphCalculator();
   
        file preporcessedFile = preprocessedFile
   
@@ -32,6 +34,9 @@ Get the node degree distobution and component size distrobution from the dnaLink
 		 
         calculator.printComponentSizeDistrubution("C:\\temp\\ComponentSizeDistrubtion.txt");
   
+ 
+ All my java scripts was ran in eclipse, for it to work on the big data set I had to change run configuration by adding -Xms1048m -Xmx12288m -Xss512m to argumnets or
+ I would end up with a stackoverflow error.
  
  This creates two files NodeDegreeDistrubition.txt and ComponentSizeDistrubtion.txt (first line in this file contains number of components).
  
