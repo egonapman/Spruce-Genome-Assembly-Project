@@ -11,6 +11,8 @@ import java.util.Map.Entry;
 
 import org.junit.Test;
 
+import com.sun.source.tree.AssertTree;
+
 public class DNAlinksTest {
 
 
@@ -69,6 +71,8 @@ public class DNAlinksTest {
 		calculator.setDegreeDistribution();
 		
 		calculator.setComponentSizeDistribution();
+		
+		assertTrue(calculator.getNumberOfComponents() == 3);
 		
 		calculator.printDegreeDistubition("C:\\temp\\NodeDegreeDistrubition.test.txt");
 		

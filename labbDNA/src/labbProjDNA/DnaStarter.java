@@ -42,7 +42,7 @@ public class DnaStarter {
 			
 			links.setComponentSizeDistribution();
 			
-			links.printDegreeDistubition("C:\\temp\\NodeDegreeDistrubition.txt");
+			links.printDegreeDistubition("C:\\temp\\apan.txt");
 			
 			links.printComponentSizeDistrubution("C:\\temp\\ComponentSizeDistrubtion.txt");
 

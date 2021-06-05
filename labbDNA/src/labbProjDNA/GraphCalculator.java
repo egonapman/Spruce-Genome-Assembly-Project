@@ -104,6 +104,12 @@ public class GraphCalculator {
 		}
 	}
 	
+	public int getNumberOfComponents() {
+		
+		return componentSizeMap.keySet().size();
+		
+	}
+	
 	
 	public void printDegreeDistubition(String utFil) throws IOException {
 		
@@ -122,7 +128,7 @@ public class GraphCalculator {
 	public void printComponentSizeDistrubution(String utFil) throws IOException {
 		
 		FileWriter fw2 = new FileWriter(utFil);
-		
+		fw2.write("Number of components in total: " +  getNumberOfComponents() + "\n");
 		fw2.write("Size\tFrequency\n");
 		for ( Entry<Integer, Integer> ent : componentSizeDistributionMap.entrySet()) {
 			
