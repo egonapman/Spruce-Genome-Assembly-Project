@@ -1,3 +1,4 @@
+Number of components in total: 639196
 Size	Frequency
 2	348082
 3	92351
