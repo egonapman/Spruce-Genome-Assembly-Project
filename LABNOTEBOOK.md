@@ -62,32 +62,32 @@ Example:
 
 input file:
 
-    ctg.ctg01 ctg.ctg02<br/>
-    ctg.ctg03 ctg.ctg01<br/>
-    ctg.ctg01 ctg.ctg04<br/>
-    ctg.ctg02 ctg.ctg01<br/>
+    ctg.ctg01 ctg.ctg02
+    ctg.ctg03 ctg.ctg01
+    ctg.ctg01 ctg.ctg04
+    ctg.ctg02 ctg.ctg01
     ctg.ctg04 ctg.ctg01
 
 $awk '{if($1 < $2) print $2" "$1; else print $1" "$2}' inputFile gives
 
-    ctg.ctg02 ctg.ctg01<br/>
-    ctg.ctg03 ctg.ctg01<br/>
-    ctg.ctg04 ctg.ctg01<br/>
-    ctg.ctg02 ctg.ctg01<br/>
+    ctg.ctg02 ctg.ctg01
+    ctg.ctg03 ctg.ctg01
+    ctg.ctg04 ctg.ctg01
+    ctg.ctg02 ctg.ctg01
     ctg.ctg04 ctg.ctg01
 
 $sort gives
   
-    ctg.ctg02 ctg.ctg01<br/>
-    ctg.ctg02 ctg.ctg01<br/>
-    ctg.ctg03 ctg.ctg01<br/>
-    ctg.ctg04 ctg.ctg01<br/>
+    ctg.ctg02 ctg.ctg01
+    ctg.ctg02 ctg.ctg01
+    ctg.ctg03 ctg.ctg01
+    ctg.ctg04 ctg.ctg01
     ctg.ctg04 ctg.ctg01
   
 $uniq gives
   
-    ctg.ctg02 ctg.ctg01<br/>
-    ctg.ctg03 ctg.ctg01<br/>
+    ctg.ctg02 ctg.ctg01
+    ctg.ctg03 ctg.ctg01
     ctg.ctg04 ctg.ctg01
 
 All edges are now only reapeted once.
