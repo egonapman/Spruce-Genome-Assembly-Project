@@ -19,34 +19,34 @@ I decided to remove all contained edges using java, a while-loops that itaretes 
 
 ------------------------------------------------------------
 
-def removeContainedNodes(inputFile):
+    def removeContainedNodes(inputFile):
   
-  outputFile = new file()
+        outputFile = new file()
   
-  reader = new Scanner(file)
+        reader = new Scanner(file)
   
-  while(reader.hasNextLine){
+        while(reader.hasNextLine){
     
-   edge = reader.nextLine
+            edge = reader.nextLine
     
-   if((edge.node1.overlapEnd - edge.node1.overlapStart) == edge.node2.length){
+            if((edge.node1.overlapEnd - edge.node1.overlapStart) == edge.node2.length):
     
-       //node2 is contained in node1
+                //node2 is contained in node1
      
-   }else if((edge.node2.overlapEnd - edge.node2.overlapStart) == edge.node1.length){
+            else if((edge.node2.overlapEnd - edge.node2.overlapStart) == edge.node1.length):
      
-     //node2 is contained in node1
+                //node2 is contained in node1
      
-   }else{
+            else:
      
-   outputFile.write(edge)
+                outputFile.write(edge)
      
-   }
- }
+        }
+    }
  
  ---------------------------------------------------------
  
- removeContainedNodes, assuming reading and writing files is in constant time, runs in constant time O(n) where n is the number of edges in G (represnted as lines in the input file).
+removeContainedNodes, assuming reading and writing files is in constant time, runs in constant time O(n) where n is the number of edges in G (represnted as lines in the input file).
       
 
 Initally the graph contained a total of 64,056,772 lines after removing all conatiened nodes I was left with only 40,350,995 lines.
@@ -62,33 +62,33 @@ Example:
 
 input file:
 
-ctg.ctg01 ctg.ctg02<br/>
-ctg.ctg03 ctg.ctg01<br/>
-ctg.ctg01 ctg.ctg04<br/>
-ctg.ctg02 ctg.ctg01<br/>
-ctg.ctg04 ctg.ctg01
+    ctg.ctg01 ctg.ctg02<br/>
+    ctg.ctg03 ctg.ctg01<br/>
+    ctg.ctg01 ctg.ctg04<br/>
+    ctg.ctg02 ctg.ctg01<br/>
+    ctg.ctg04 ctg.ctg01
 
 $awk '{if($1 < $2) print $2" "$1; else print $1" "$2}' inputFile gives
 
-ctg.ctg02 ctg.ctg01<br/>
-ctg.ctg03 ctg.ctg01<br/>
-ctg.ctg04 ctg.ctg01<br/>
-ctg.ctg02 ctg.ctg01<br/>
-ctg.ctg04 ctg.ctg01
+    ctg.ctg02 ctg.ctg01<br/>
+    ctg.ctg03 ctg.ctg01<br/>
+    ctg.ctg04 ctg.ctg01<br/>
+    ctg.ctg02 ctg.ctg01<br/>
+    ctg.ctg04 ctg.ctg01
 
 $sort gives
   
-ctg.ctg02 ctg.ctg01<br/>
-ctg.ctg02 ctg.ctg01<br/>
-ctg.ctg03 ctg.ctg01<br/>
-ctg.ctg04 ctg.ctg01<br/>
-ctg.ctg04 ctg.ctg01
+    ctg.ctg02 ctg.ctg01<br/>
+    ctg.ctg02 ctg.ctg01<br/>
+    ctg.ctg03 ctg.ctg01<br/>
+    ctg.ctg04 ctg.ctg01<br/>
+    ctg.ctg04 ctg.ctg01
   
 $uniq gives
   
-ctg.ctg02 ctg.ctg01<br/>
-ctg.ctg03 ctg.ctg01<br/>
-ctg.ctg04 ctg.ctg01
+    ctg.ctg02 ctg.ctg01<br/>
+    ctg.ctg03 ctg.ctg01<br/>
+    ctg.ctg04 ctg.ctg01
 
 All edges are now only reapeted once.
 
@@ -112,23 +112,24 @@ I really only have to count the number of occurances of a node to finds it's deg
 For this i decieded to iterate each node to a list containg it's neighbors with the following algortihm
 
 ------------------------------
-def mapNodesToNeighbors(G):
+   
+    def mapNodesToNeighbors(G):
   
- map<key, list> map = new Hashmap()
+       map<key, list> map = new Hashmap()
  
- for each edge in G:
+          for each edge in G:
     
-   if (!map.containsKey(edge.node1)):
-      map.put(node1, new list)
-      map(node1).add(node2)
-   else:
-      map(node1).add(node2)
+              if (!map.containsKey(edge.node1)):
+                  map.put(node1, new list)
+                  map(node1).add(node2)
+              else:
+                  map(node1).add(node2)
 
-   if (!map.containsKey(edge.node2)):
-      map.put(node2, new list)
-      map(node1).add(node1)
-   else:
-      map(node2).add(node1)
+              if (!map.containsKey(edge.node2)):
+                  map.put(node2, new list)
+                  map(node1).add(node1)
+              else:
+                  map(node2).add(node1)
   
   
 ------------------------------
@@ -137,20 +138,21 @@ In the real code I use the Hashcode of the identifier as keys in my hashmap.
 
 example:
 
-contig_1695162".hashCode()
+    contig_1695162".hashCode()
 
-will return: 1865787805.
+    will return: 1865787805.
 
 Now we get the degrees of every node by iterating entries of the map ang getting the size of every list.
 I could have just used a counter when initating the hashmap instead of a list with every neighbor, but having a list made it easier to examine in test
 and when we need to know every neighbor for later assignments. 
 
 ----------------------------------
-def getNodeDegreeDistrubtion(map<key, listOfNeigbors>):
 
-  for each entry in map():
-   degree = entry.getValue.size();
-   //do something (print/write to file etc)
+    def getNodeDegreeDistrubtion(map<key, listOfNeigbors>):
+
+        for each entry in map():
+            degree = entry.getValue.size();
+            //do something (print/write to file etc)
 
 ---------------------------------
 
@@ -165,28 +167,28 @@ The algorithm is as follows
 
 --------------------------------------------
 
-def setComponent(map<key, negboursAndcomponent> neigboursAndComponents):
+    def setComponent(map<key, negboursAndcomponent> neigboursAndComponents):
   
-  componentNumber = 0
+       componentNumber = 0
   
-  for entry in neigboursAndComponents():
+       for entry in neigboursAndComponents():
     
-   current = entry.getValue()
+          current = entry.getValue()
    
-   if(current.component == null):  //componet has not yet been defined if it's set to null.
-      componentNumber++;
-      setComponentRecursivly(componentNumber, current):
+          if(current.component == null):  //componet has not yet been defined if it's set to null.
+              componentNumber++;
+              setComponentRecursivly(componentNumber, current):
         
     
-def setComponentRecursivly(componentNumber, current):
+    def setComponentRecursivly(componentNumber, current):
   
-  if(current.component == null):
-    current.setComponentNumber(componentNumber)
+       if(current.component == null):
+       current.setComponentNumber(componentNumber)
    
-  for each neighbor in current.neighbors:
+       for each neighbor in current.neighbors:
     
-   if(neighbor.component == null):
-    setComponentRecursivly(componentNumber, neighbor)
+           if(neighbor.component == null):
+           setComponentRecursivly(componentNumber, neighbor)
    
     
  --------------------------------------------   
