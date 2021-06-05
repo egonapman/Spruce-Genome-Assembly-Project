@@ -10,30 +10,31 @@ Get the node degree distobution and component size distrobution from the dnaLink
 
 (I had to change to run configrations when running in eclipse beacuse of how big the dataset is)
 
-def main():
+    def main():
 
-  dnaLinks links = new dnaLinks():
+       raphCalculator calculator=new GraphCalculator();
   
-  file preporcessedFile = new preporcessedFile(file)
+       file preporcessedFile = preprocessedFile
   
-  for each line in file
+       for each line in preprocessedFile:
   
-    links.add(col[0], col[1])
-    
-    
-    
-  links.setKomponent();
+    	  links.add(col[0], col[1])
+
+        links.setKomponent();
 			
-	links.setHistogram();
-			
-	links.setHistogramcomponrt();
-			
-	links.printDegreeDistubition();
-			
-	links.printComponentSizeDistrubution();
+        calculator.assembleContigKeyIntoComponents();
+		
+        calculator.setDegreeDistribution();
+		
+        calculator.setComponentSizeDistribution();
+		
+        calculator.printDegreeDistubition("C:\\temp\\NodeDegreeDistrubition.txt");
+		 
+        calculator.printComponentSizeDistrubution("C:\\temp\\ComponentSizeDistrubtion.txt");
   
  
- this creates two files NodeDegreeDistrubition.txt and ComponentSizeDistrubtion.txt
+ This creates two files NodeDegreeDistrubition.txt and ComponentSizeDistrubtion.txt (first line in this file contains number of components).
+ 
  
  
  
