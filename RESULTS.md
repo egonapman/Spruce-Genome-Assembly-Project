@@ -38,7 +38,7 @@ psudo-code for my main method
  All my java scripts was ran in eclipse, for it to work on the big data set I had to change run configuration by adding -Xms1048m -Xmx12288m -Xss512m to argumnets or
  I would end up with a stackoverflow error.
  
- This creates two files NodeDegreeDistrubition.txt and ComponentSizeDistrubtion.txt (first line in this file contains number of components).
+ Doing all of this succesfully will create a results folder with two files NodeDegreeDistrubition.txt and ComponentSizeDistrubtion.txt (first line in this file contains number of components).
  
  
  
