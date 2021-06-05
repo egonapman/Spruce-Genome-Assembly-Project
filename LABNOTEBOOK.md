@@ -56,7 +56,7 @@ Then I wanted to see if there exists lines with same identifiers but in diffrent
 
 Here I decided to use unix commands.
 
-$awk '{if($1 < $2) print $2" "$1; else print $1" "$2}' inputFile | sort | uniq > outputFile
+    $awk '{if($1 < $2) print $2" "$1; else print $1" "$2}' inputFile | sort | uniq > outputFile
 
 Example:
 
